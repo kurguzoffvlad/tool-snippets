@@ -12,13 +12,6 @@
       <option name="TypeScript" value="true" />
     </context>
   </template>
-  <template name="tool" value="evo.log.colorWarn('yellow', 'logAll', 'common', '$TEXT$',  $END$);" description="console.warn для дебага" toReformat="true" toShortenFQNames="true">
-    <variable name="TEXT" expression="" defaultValue="" alwaysStopAt="true" />
-    <context>
-      <option name="JAVA_SCRIPT" value="true" />
-      <option name="TypeScript" value="true" />
-    </context>
-  </template>
   <template name="tool_comp_2_ngOnInit" value="import { OnInit } from '@angular/core';&#10;&#10;implements OnInit&#10;&#10;public ngOnInit() {&#10;    $TEXT$&#10;}$END$&#10;" description="хук, вызывается один раз после создания компонента, когда инициализировались все данные (например, @Input свойства) - при первой загрузке" toReformat="false" toShortenFQNames="true">
     <variable name="TEXT" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
