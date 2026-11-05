@@ -1,0 +1,435 @@
+{
+  "tool#forEach": {
+    "prefix": "tool#forEach",
+    "body": [
+      "$1.forEach((item, i, arr) => {",
+      "  console.log( arr, i, item);",
+      "});",
+      "$0"
+    ],
+    "description": "forEach - метод массива",
+    "scope": "javascript,typescript"
+  },
+  "tool_deb": {
+    "prefix": "tool_deb",
+    "body": ["debugger;"],
+    "description": "debugger",
+    "scope": "javascript,typescript"
+  },
+  "tool_comp_2_ngOnInit": {
+    "prefix": "tool_comp_2_ngOnInit",
+    "body": [
+      "import { OnInit } from '@angular/core';",
+      "",
+      "implements OnInit",
+      "",
+      "public ngOnInit() {",
+      "    $1",
+      "}",
+      "$0"
+    ],
+    "description": "хук, вызывается один раз после создания компонента, когда инициализировались все данные (например, @Input свойства) - при первой загрузке",
+    "scope": "javascript,typescript"
+  },
+  "tool_comp_4_ngOnDestroy": {
+    "prefix": "tool_comp_4_ngOnDestroy",
+    "body": [
+      "import {OnDestroy} from '@angular/core';",
+      "",
+      "implements OnDestroy",
+      "",
+      "public ngOnDestroy() {",
+      "    $1",
+      "}",
+      "$0"
+    ],
+    "description": "хук, вызывается перед уничтожением компонента - при уничтожении",
+    "scope": "javascript,typescript"
+  },
+  "tool_comp_1_ngOnChanges": {
+    "prefix": "tool_comp_1_ngOnChanges",
+    "body": [
+      "import { OnChanges, SimpleChanges } from '@angular/core';",
+      "",
+      "implements OnChanges",
+      "",
+      "public ngOnChanges(changes: SimpleChanges): void {",
+      "    console.log(changes);",
+      "}",
+      "$0"
+    ],
+    "description": "хук, который срабатывает каждый раз, когда меняются входные данные (@Input) компонента - при первой загрузке (если есть @Input)",
+    "scope": "javascript,typescript"
+  },
+  "tool_comp_3_ngAfterViewInit": {
+    "prefix": "tool_comp_3_ngAfterViewInit",
+    "body": [
+      "import { AfterViewInit } from '@angular/core';",
+      "",
+      "implements AfterViewInit",
+      "",
+      "public ngAfterViewInit() {",
+      "    $1",
+      "}",
+      "$0"
+    ],
+    "description": "хук, вызывается после полной инициализации представления (view) компонента - при первой загрузке",
+    "scope": "javascript,typescript"
+  },
+  "tool___subscribe": {
+    "prefix": "tool___subscribe",
+    "body": [
+      "// --------------------------------------",
+      "import { OnDestroy } from '@angular/core';",
+      "import { Subject } from 'rxjs/Subject';",
+      "import { takeUntil } from 'rxjs/operators';",
+      "// --------------------------------------",
+      "private _destroyedSubscribe$: Subject<void> = new Subject<void>();",
+      "// --------------------------------------",
+      "    $1",
+      "    .pipe(takeUntil(this._destroyedSubscribe$))",
+      "    .subscribe({",
+      "        next: (result) => { console.log('result', result); },",
+      "        error: (err) => { console.error('Ошибка:', err); // здесь можно показать уведомление или выполнить fallback-логику },",
+      "        complete: () => { console.log('Поток завершён'); }",
+      "    });",
+      "// --------------------------------------",
+      "public ngOnDestroy(): void {",
+      "    this._destroyedSubscribe$.next();",
+      "    this._destroyedSubscribe$.complete();",
+      "}",
+      "// --------------------------------------",
+      "$0"
+    ],
+    "description": "подписка на Observable и автоматическая отписка при уничтожении компонента (ngOnDestroy).",
+    "scope": "javascript,typescript"
+  },
+  "tool__tryCatch.await": {
+    "prefix": "tool__tryCatch.await",
+    "body": ["await evo.awaitTryCatch.send($1, $2)", "$0"],
+    "description": "tryCatch для promise",
+    "scope": "javascript,typescript"
+  },
+  "tool-as_const_1": {
+    "prefix": "tool-as_const_1",
+    "body": ["const obj = { $1: $2 } as const; // readonly", "$0"],
+    "description": "объект константа",
+    "scope": "javascript,typescript"
+  },
+  "tool-as_const_2_Record": {
+    "prefix": "tool-as_const_2_Record",
+    "body": [
+      "// type UserId = 'id1' | 'id2' | 'id3';",
+      "// const users: Record<UserId, string> = { id1: 'Alice', id2: 'Bob', id3: 'Charlie' // id4: 'David' // ❌ ошибка: ключ не из UserId }  as const;;",
+      "",
+      "const obj: Record<$1, $2> = {$0} as const; // readonly"
+    ],
+    "description": "типизация объектов через Record",
+    "scope": "javascript,typescript"
+  },
+  "tool--typePickPartialOmit": {
+    "prefix": "tool--typePickPartialOmit",
+    "body": [
+      "// type UserUpdate = Pick<User, 'id'> & Partial<Omit<User, 'id'>>;",
+      "type $1 = Pick<$2, '$3'> & Partial<Omit<$2, '$3'>>;",
+      "$0"
+    ],
+    "description": "обязательное поле, остальные — опциональные",
+    "scope": "javascript,typescript"
+  },
+  "tool--type_keyof": {
+    "prefix": "tool--type_keyof",
+    "body": [
+      "// interface Person { name: string; age: number }; type PersonKeys = keyof Person",
+      "type $1Keys = keyof $1;",
+      "$0"
+    ],
+    "description": "динамические ключи объектов",
+    "scope": "javascript,typescript"
+  },
+  "tool--typeTNullable": {
+    "prefix": "tool--typeTNullable",
+    "body": [
+      "// let currentUser: TNullable<User> = { id: 1, name: \"Иван\" };",
+      "type TNullable<T> = T | null;",
+      "$0"
+    ],
+    "description": "Дженерик-тип, который расширяет тип T, позволяя ему также принимать значение null.",
+    "scope": "javascript,typescript"
+  },
+  "tool--typePartial": {
+    "prefix": "tool--typePartial",
+    "body": [
+      "// const car: Partial<Car> = {};",
+      "const $1: Partial<$2> = {};",
+      "$0"
+    ],
+    "description": "объект временно пуст",
+    "scope": "javascript,typescript"
+  },
+  "tool__tryCatch": {
+    "prefix": "tool__tryCatch",
+    "body": [
+      "try {",
+      "    $0",
+      "} catch (error) {",
+      "    console.error(error);",
+      "} finally {",
+      "    // код, который выполнится всегда",
+      "}"
+    ],
+    "description": "обертка кода в блок try-catch-finally",
+    "scope": "javascript,typescript"
+  },
+  "tool___Injector": {
+    "prefix": "tool___Injector",
+    "body": [
+      "// в \"рабочем компоненте\" - public constructor(protected injector: Injector) { super(injector); }",
+      "",
+      "import { Injector, Type } from '@angular/core';",
+      "",
+      "protected $1: $2;",
+      "",
+      "protected constructor(",
+      "    protected injector: Injector,",
+      ") {",
+      "    this.$1 = injector.get<$2>($2 as Type<$2>);",
+      "}",
+      "$0"
+    ],
+    "description": "Подключение сервиса в базовом компоненте через injector",
+    "scope": "javascript,typescript"
+  },
+  "tool____ViewChild_Child": {
+    "prefix": "tool____ViewChild_Child",
+    "body": [
+      "import { ViewChild } from '@angular/core'",
+      "",
+      "@ViewChild($1) private _childComponent!: $1;",
+      "$0"
+    ],
+    "description": "дочерний компонент",
+    "scope": "javascript,typescript"
+  },
+  "tool____ViewChild_Element": {
+    "prefix": "tool____ViewChild_Element",
+    "body": [
+      "import { ViewChild, ElementRef } from '@angular/core'",
+      "",
+      "@ViewChild('element') private _element: ElementRef; // <div #rootElement></div>",
+      "$0"
+    ],
+    "description": "html элемент",
+    "scope": "javascript,typescript"
+  },
+  "tool____get_set": {
+    "prefix": "tool____get_set",
+    "body": [
+      "private _$1: $2;",
+      "",
+      "public get $1(): $2 {",
+      "  return this._$1;",
+      "}",
+      "",
+      "public set $1(value: $2) {",
+      "  if (this._$1 !== value) {",
+      "    this._$1 = value;",
+      "    // this.cdr.markForCheck(); // если используется ChangeDetectionStrategy.OnPush",
+      "  }",
+      "}",
+      "$0"
+    ],
+    "description": "getter/setter типизированный",
+    "scope": "javascript,typescript"
+  },
+  "tool____get_set@Input()": {
+    "prefix": "tool____get_set@Input()",
+    "body": [
+      "private _$1: $2;",
+      "",
+      "@Input()",
+      "public get $1(): $2 {",
+      "  return this._$1;",
+      "}",
+      "",
+      "public set $1(value: $2) {",
+      "  if (this._$1 !== value) {",
+      "    this._$1 = value;",
+      "    // this.cdr.markForCheck(); // если используется ChangeDetectionStrategy.OnPush",
+      "  }",
+      "}",
+      "$0"
+    ],
+    "description": "",
+    "scope": "javascript,typescript"
+  },
+  "tool---Proxy_Логирование": {
+    "prefix": "tool---Proxy_Логирование",
+    "body": [
+      "public createProxyLog(target, onChange) {",
+      "    // Обработка null и примитивов",
+      "    if (target === null || typeof target !== 'object') {",
+      "        return target;",
+      "    }",
+      "  ",
+      "    return new Proxy(target, {",
+      "        set(obj, prop, value) {",
+      "            const oldValue = obj[prop];",
+      "          ",
+      "            // Рекурсивно обрабатываем новые объекты",
+      "            const newValue = this.createProxyLog(value, onChange);",
+      "          ",
+      "            obj[prop] = newValue;",
+      "          ",
+      "            // Проверяем реальное изменение (учитываем NaN)",
+      "            if (oldValue !== value && !(Number.isNaN(oldValue) && Number.isNaN(value))) {",
+      "                onChange(prop, newValue, oldValue);",
+      "            }",
+      "          ",
+      "            return true;",
+      "        },",
+      "    ",
+      "        get(obj, prop) {",
+      "            const value = obj[prop];",
+      "          ",
+      "            // Рекурсивно создаем прокси для вложенных объектов",
+      "            if (value !== null && typeof value === 'object') {",
+      "                return this.createProxyLog(value, onChange);",
+      "            }",
+      "          ",
+      "            return value;",
+      "        },",
+      "    ",
+      "        deleteProperty(obj, prop) {",
+      "            const oldValue = obj[prop];",
+      "            const deleted = delete obj[prop];",
+      "          ",
+      "            if (deleted) { onChange(prop, undefined, oldValue); }",
+      "          ",
+      "            return deleted;",
+      "        }",
+      "    });",
+      "}",
+      "",
+      "",
+      "// Использование:",
+      "//let state = this.createProxyLog(",
+      "//{ user: { name: 'Alice', age: 30 } settings: { theme: 'dark', notifications: true } }, ",
+      "//(prop, value, oldValue) => { console.log(`Property \"${prop}\" changed: ${oldValue} → ${value}`); });",
+      "//",
+      "// delete state.user.email;        // Property \"email\" changed: alice@example.com → undefined",
+      "$0"
+    ],
+    "description": "Функция создания Proxy Логирование",
+    "scope": "javascript,typescript"
+  },
+  "tool-as_const_3_satisfies_Record": {
+    "prefix": "tool-as_const_3_satisfies_Record",
+    "body": [
+      "// type UserId = 'id1' | 'id2' | 'id3';",
+      "// const users = { id1: 'Alice', id2: 'Bob', id3: 'Charlie' // id4: 'David' // ❌ ошибка: ключ не из UserId } as const satisfies Record<UserId, string>;",
+      "",
+      "const obj = {$0} as const satisfies Record<$1, $2>;"
+    ],
+    "description": "константный объект с as const и satisfies Record",
+    "scope": "javascript,typescript"
+  },
+  "tool#type_never": {
+    "prefix": "tool#type_never",
+    "body": [
+      "// Если union‑тип (Direction) изменится, TypeScript выдаст ошибку компиляции, если switch не обновлён.",
+      "type Direction = 'up' | 'down';",
+      "",
+      "public move(direction: Direction): number {",
+      "    switch (direction) {",
+      "        case 'up': return 1;",
+      "        case 'down': return -1;",
+      "        default:",
+      "          //!!! Если добавлен новый вариант в `Direction` и не обработан — ошибка компиляции",
+      "          const _: never = direction;",
+      "          throw new Error(`Неизвестный ключ: ${_}`);",
+      "    }",
+      "}",
+      "$0"
+    ],
+    "description": "пример обеспечения типовой безопасности при работе с union‑тип и switch",
+    "scope": "javascript,typescript"
+  },
+  "tool--Interface with readonly": {
+    "prefix": "tool--Interface with readonly",
+    "body": [
+      "// interface UserId { readonly id: number; }; const user: UserId = { id: 12345 };",
+      "// Ошибка компиляции - user.id = 67890; // Cannot assign to 'id' because it is a read-only property",
+      "interface I$1 {",
+      "  readonly $2: $3;",
+      "}",
+      "$0"
+    ],
+    "description": "Interface with readonly properties",
+    "scope": "javascript,typescript"
+  },
+  "tool#switch": {
+    "prefix": "tool#switch",
+    "body": [
+      "switch ($1) {",
+      "  case $2: $3; break;",
+      "  case $4: $5; break;",
+      "  default:",
+      "    $6;",
+      "}",
+      "$0"
+    ],
+    "description": "create SWITCH block",
+    "scope": "javascript,typescript"
+  },
+  "tool#switch_NEVER": {
+    "prefix": "tool#switch_NEVER",
+    "body": [
+      "// Если union‑тип (type Direction = 'up' | 'down';) изменится, TypeScript выдаст ошибку компиляции, если switch не обновлён.",
+      "",
+      "switch ($1) {",
+      "  case $2:",
+      "    $3;",
+      "    break;",
+      "  case $4:",
+      "    $5;",
+      "    break;",
+      "  default:",
+      "    const _exhaustiveCheck: never = $1;",
+      "    throw new Error(`Необработанное значение: ${$1}`);",
+      "}",
+      "$0"
+    ],
+    "description": "create SWITCH block with NEVER",
+    "scope": "javascript,typescript"
+  },
+  "tool----windowГлобальный_объект": {
+    "prefix": "tool----windowГлобальный_объект",
+    "body": [
+      "declare global {",
+      "    interface Window { $1: any; }",
+      "    ",
+      "    const $1: any; // Добавляем глобальную переменную",
+      "}",
+      "",
+      "(window as any).$1 = $0;",
+      "",
+      "export {};"
+    ],
+    "description": "Declare global window object and assign value",
+    "scope": "javascript,typescript"
+  },
+  "tool---globalErrorListeners": {
+    "prefix": "tool---globalErrorListeners",
+    "body": [
+      "window.addEventListener('error', (event) => { console.warn('Global error:', event.error); }); // для обычных ошибок",
+      "",
+      "window.addEventListener('unhandledrejection', (event) => {",
+      "  console.warn('Unhandled promise rejection:', event.reason); // для ошибок (например, async / Promise)",
+      "});",
+      "$0"
+    ],
+    "description": "Debug: global error & promise rejection listeners",
+    "scope": "javascript,typescript"
+  }
+}

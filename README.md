@@ -1,24 +1,105 @@
+Вот README.md, адаптированный под библиотеку сниппетов с установкой для WebStorm и VS Code:
+
+```markdown
 # ToolSnippetsWs
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.0.
+Библиотека сниппетов для **WebStorm** и **Visual Studio Code** (Angular/TypeScript).
 
-## Code scaffolding
+## Установка
 
-Run `ng generate component component-name --project tool-snippets-ws` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project tool-snippets-ws`.
-> Note: Don't forget to add `--project tool-snippets-ws` or else it will be added to the default project in your `angular.json` file. 
+```bash
+npm install tool-snippets-ws
+```
 
-## Build
+После установки выполните команду для нужной IDE:
 
-Run `ng build tool-snippets-ws` to build the project. The build artifacts will be stored in the `dist/` directory.
+### WebStorm
 
-## Publishing
+```bash
+npm run SNIPPETS:webstorm
+```
 
-After building your library with `ng build tool-snippets-ws`, go to the dist folder `cd dist/tool-snippets-ws` and run `npm publish`.
+Скрипт находит все установленные версии WebStorm и копирует файл `_tool-frontend.xml` в папку `templates` каждой из них.
 
-## Running unit tests
+> ⚠️ После установки перезапустите WebStorm, чтобы сниппеты применились.
 
-Run `ng test tool-snippets-ws` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### VS Code
 
-## Further help
+```bash
+npm run SNIPPETS:vscode
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Скрипт копирует файл `tool-frontend.code-snippets` в пользовательскую папку сниппетов VS Code:
+- **Windows:** `%APPDATA%\Code\User\snippets\`
+- **macOS:** `~/Library/Application Support/Code/User/snippets/`
+- **Linux:** `~/.config/Code/User/snippets/`
+
+> ⚠️ После установки перезагрузите окно VS Code: `Ctrl+Shift+P` → **Developer: Reload Window**.
+
+## Использование
+
+В редакторе начните вводить префикс сниппета (например `tool_deb`, `tool#forEach`, `tool___subscribe`) — IntelliSense предложит подстановку.
+
+### Примеры сниппетов
+
+| Префикс | Описание |
+|---|---|
+| `tool#forEach` | forEach по массиву |
+| `tool_deb` | `debugger;` |
+| `tool_comp_1_ngOnChanges` | хук `ngOnChanges` |
+| `tool_comp_2_ngOnInit` | хук `ngOnInit` |
+| `tool_comp_3_ngAfterViewInit` | хук `ngAfterViewInit` |
+| `tool_comp_4_ngOnDestroy` | хук `ngOnDestroy` |
+| `tool___subscribe` | подписка на Observable с `takeUntil` |
+| `tool__tryCatch` | блок `try-catch-finally` |
+| `tool__tryCatch.await` | tryCatch для promise |
+| `tool-as_const_1` | объект `as const` |
+| `tool-as_const_2_Record` | `Record<K, V>` + `as const` |
+| `tool-as_const_3_satisfies_Record` | `as const satisfies Record` |
+| `tool--typePickPartialOmit` | `Pick & Partial<Omit>` |
+| `tool--type_keyof` | `keyof` |
+| `tool--typeTNullable` | `TNullable<T>` |
+| `tool--typePartial` | `Partial<T>` |
+| `tool--Interface with readonly` | interface с `readonly` |
+| `tool___Injector` | сервис через `Injector` |
+| `tool____ViewChild_Child` | `@ViewChild` (компонент) |
+| `tool____ViewChild_Element` | `@ViewChild` (ElementRef) |
+| `tool____get_set` | getter/setter |
+| `tool____get_set@Input()` | getter/setter с `@Input()` |
+| `tool---Proxy_Логирование` | Proxy-логирование изменений |
+| `tool#type_never` | `switch` + `never` (exhaustive check) |
+| `tool#switch` | `switch` блок |
+| `tool#switch_NEVER` | `switch` + `never` |
+| `tool----windowГлобальный_объект` | declare global window |
+| `tool---globalErrorListeners` | global error listeners |
+
+## Структура пакета
+
+```
+tool-snippets-ws/
+├── webstorm/
+│   ├── _tool-frontend.xml
+│   └── install-snippets.js
+├── vscode/
+│   ├── tool-frontend.code-snippets
+│   └── install-snippets.js
+├── package.json
+└── README.md
+```
+
+## Разработка
+
+```bash
+# сборка
+ng build tool-snippets-ws
+
+# публикация
+cd dist/tool-snippets-ws
+npm publish
+```
+
+## Требования
+
+- Angular `^15.2.0` (peer dependency)
+- Node.js (для скриптов установки)
+```
