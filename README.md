@@ -8,7 +8,7 @@
 ## Установка
 
 ```bash
-npm install tool-snippets-ws
+npm install -D tool-snippets-ws
 ```
 
 После установки выполните команду для нужной IDE:
@@ -100,6 +100,4 @@ npm publish
 
 ## Требования
 
-- Angular `^15.2.0` (peer dependency)
 - Node.js (для скриптов установки)
-```
