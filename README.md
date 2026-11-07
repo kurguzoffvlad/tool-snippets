@@ -1,4 +1,4 @@
-Вот README.md, адаптированный под библиотеку сниппетов с установкой для WebStorm и VS Code:
+Для WebStorm и VS Code:
 
 ```markdown
 # ToolSnippets
