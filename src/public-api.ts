@@ -1,5 +1,5 @@
 /*
- * Public API Surface of tool-snippets-ws
+ * Public API Surface of tool-snippets
  */
 
 export {};

@@ -1,14 +1,14 @@
 Вот README.md, адаптированный под библиотеку сниппетов с установкой для WebStorm и VS Code:
 
 ```markdown
-# ToolSnippetsWs
+# ToolSnippets
 
 Библиотека сниппетов для **WebStorm** и **Visual Studio Code** (Angular/TypeScript).
 
 ## Установка
 
 ```bash
-npm install -D tool-snippets-ws
+npm install -D tool-snippets
 ```
 
 После установки выполните команду для нужной IDE:
@@ -76,7 +76,7 @@ npm run SNIPPETS:vscode
 ## Структура пакета
 
 ```
-tool-snippets-ws/
+tool-snippets/
 ├── webstorm/
 │   ├── _tool-frontend.xml
 │   └── install-snippets.js
@@ -91,10 +91,10 @@ tool-snippets-ws/
 
 ```bash
 # сборка
-ng build tool-snippets-ws
+ng build tool-snippets
 
 # публикация
-cd dist/tool-snippets-ws
+cd dist/tool-snippets
 npm publish
 ```
 
