@@ -1,53 +1,6 @@
 {
-  "tool#forEach": {
-    "prefix": "tool#forEach",
-    "body": [
-      "$1.forEach((item, i, arr) => {",
-      "  console.log( arr, i, item);",
-      "});",
-      "$0"
-    ],
-    "description": "forEach - метод массива",
-    "scope": "javascript,typescript"
-  },
-  "tool_deb": {
-    "prefix": "tool_deb",
-    "body": ["debugger;"],
-    "description": "debugger",
-    "scope": "javascript,typescript"
-  },
-  "tool_comp_2_ngOnInit": {
-    "prefix": "tool_comp_2_ngOnInit",
-    "body": [
-      "import { OnInit } from '@angular/core';",
-      "",
-      "implements OnInit",
-      "",
-      "public ngOnInit() {",
-      "    $1",
-      "}",
-      "$0"
-    ],
-    "description": "хук, вызывается один раз после создания компонента, когда инициализировались все данные (например, @Input свойства) - при первой загрузке",
-    "scope": "javascript,typescript"
-  },
-  "tool_comp_4_ngOnDestroy": {
-    "prefix": "tool_comp_4_ngOnDestroy",
-    "body": [
-      "import {OnDestroy} from '@angular/core';",
-      "",
-      "implements OnDestroy",
-      "",
-      "public ngOnDestroy() {",
-      "    $1",
-      "}",
-      "$0"
-    ],
-    "description": "хук, вызывается перед уничтожением компонента - при уничтожении",
-    "scope": "javascript,typescript"
-  },
-  "tool_comp_1_ngOnChanges": {
-    "prefix": "tool_comp_1_ngOnChanges",
+  "tool-hook-onChanges": {
+    "prefix": "tool-hook-onChanges",
     "body": [
       "import { OnChanges, SimpleChanges } from '@angular/core';",
       "",
@@ -61,8 +14,23 @@
     "description": "хук, который срабатывает каждый раз, когда меняются входные данные (@Input) компонента - при первой загрузке (если есть @Input)",
     "scope": "javascript,typescript"
   },
-  "tool_comp_3_ngAfterViewInit": {
-    "prefix": "tool_comp_3_ngAfterViewInit",
+  "tool-hook-onInit": {
+    "prefix": "tool-hook-onInit",
+    "body": [
+      "import { OnInit } from '@angular/core';",
+      "",
+      "implements OnInit",
+      "",
+      "public ngOnInit() {",
+      "    $1",
+      "}",
+      "$0"
+    ],
+    "description": "хук, вызывается один раз после создания компонента, когда инициализировались все данные (например, @Input свойства) - при первой загрузке",
+    "scope": "javascript,typescript"
+  },
+  "tool-hook-afterViewInit": {
+    "prefix": "tool-hook-afterViewInit",
     "body": [
       "import { AfterViewInit } from '@angular/core';",
       "",
@@ -76,8 +44,23 @@
     "description": "хук, вызывается после полной инициализации представления (view) компонента - при первой загрузке",
     "scope": "javascript,typescript"
   },
-  "tool___subscribe": {
-    "prefix": "tool___subscribe",
+  "tool-hook-onDestroy": {
+    "prefix": "tool-hook-onDestroy",
+    "body": [
+      "import {OnDestroy} from '@angular/core';",
+      "",
+      "implements OnDestroy",
+      "",
+      "public ngOnDestroy() {",
+      "    $1",
+      "}",
+      "$0"
+    ],
+    "description": "хук, вызывается перед уничтожением компонента - при уничтожении",
+    "scope": "javascript,typescript"
+  },
+  "tool-ng-subscribe": {
+    "prefix": "tool-ng-subscribe",
     "body": [
       "// --------------------------------------",
       "import { OnDestroy } from '@angular/core';",
@@ -104,85 +87,8 @@
     "description": "подписка на Observable и автоматическая отписка при уничтожении компонента (ngOnDestroy).",
     "scope": "javascript,typescript"
   },
-  "tool__tryCatch.await": {
-    "prefix": "tool__tryCatch.await",
-    "body": ["await evo.awaitTryCatch.send($1, $2)", "$0"],
-    "description": "tryCatch для promise",
-    "scope": "javascript,typescript"
-  },
-  "tool-as_const_1": {
-    "prefix": "tool-as_const_1",
-    "body": ["const obj = { $1: $2 } as const; // readonly", "$0"],
-    "description": "объект константа",
-    "scope": "javascript,typescript"
-  },
-  "tool-as_const_2_Record": {
-    "prefix": "tool-as_const_2_Record",
-    "body": [
-      "// type UserId = 'id1' | 'id2' | 'id3';",
-      "// const users: Record<UserId, string> = { id1: 'Alice', id2: 'Bob', id3: 'Charlie' // id4: 'David' // ❌ ошибка: ключ не из UserId }  as const;;",
-      "",
-      "const obj: Record<$1, $2> = {$0} as const; // readonly"
-    ],
-    "description": "типизация объектов через Record",
-    "scope": "javascript,typescript"
-  },
-  "tool--typePickPartialOmit": {
-    "prefix": "tool--typePickPartialOmit",
-    "body": [
-      "// type UserUpdate = Pick<User, 'id'> & Partial<Omit<User, 'id'>>;",
-      "type $1 = Pick<$2, '$3'> & Partial<Omit<$2, '$3'>>;",
-      "$0"
-    ],
-    "description": "обязательное поле, остальные — опциональные",
-    "scope": "javascript,typescript"
-  },
-  "tool--type_keyof": {
-    "prefix": "tool--type_keyof",
-    "body": [
-      "// interface Person { name: string; age: number }; type PersonKeys = keyof Person",
-      "type $1Keys = keyof $1;",
-      "$0"
-    ],
-    "description": "динамические ключи объектов",
-    "scope": "javascript,typescript"
-  },
-  "tool--typeTNullable": {
-    "prefix": "tool--typeTNullable",
-    "body": [
-      "// let currentUser: TNullable<User> = { id: 1, name: \"Иван\" };",
-      "type TNullable<T> = T | null;",
-      "$0"
-    ],
-    "description": "Дженерик-тип, который расширяет тип T, позволяя ему также принимать значение null.",
-    "scope": "javascript,typescript"
-  },
-  "tool--typePartial": {
-    "prefix": "tool--typePartial",
-    "body": [
-      "// const car: Partial<Car> = {};",
-      "const $1: Partial<$2> = {};",
-      "$0"
-    ],
-    "description": "объект временно пуст",
-    "scope": "javascript,typescript"
-  },
-  "tool__tryCatch": {
-    "prefix": "tool__tryCatch",
-    "body": [
-      "try {",
-      "    $0",
-      "} catch (error) {",
-      "    console.error(error);",
-      "} finally {",
-      "    // код, который выполнится всегда",
-      "}"
-    ],
-    "description": "обертка кода в блок try-catch-finally",
-    "scope": "javascript,typescript"
-  },
-  "tool___Injector": {
-    "prefix": "tool___Injector",
+  "tool-ng-injector": {
+    "prefix": "tool-ng-injector",
     "body": [
       "// в \"рабочем компоненте\" - public constructor(protected injector: Injector) { super(injector); }",
       "",
@@ -200,8 +106,8 @@
     "description": "Подключение сервиса в базовом компоненте через injector",
     "scope": "javascript,typescript"
   },
-  "tool____ViewChild_Child": {
-    "prefix": "tool____ViewChild_Child",
+  "tool-ng-viewChild": {
+    "prefix": "tool-ng-viewChild",
     "body": [
       "import { ViewChild } from '@angular/core'",
       "",
@@ -211,8 +117,8 @@
     "description": "дочерний компонент",
     "scope": "javascript,typescript"
   },
-  "tool____ViewChild_Element": {
-    "prefix": "tool____ViewChild_Element",
+  "tool-ng-viewChildEl": {
+    "prefix": "tool-ng-viewChildEl",
     "body": [
       "import { ViewChild, ElementRef } from '@angular/core'",
       "",
@@ -222,8 +128,8 @@
     "description": "html элемент",
     "scope": "javascript,typescript"
   },
-  "tool____get_set": {
-    "prefix": "tool____get_set",
+  "tool-ng-getset": {
+    "prefix": "tool-ng-getset",
     "body": [
       "private _$1: $2;",
       "",
@@ -242,8 +148,8 @@
     "description": "getter/setter типизированный",
     "scope": "javascript,typescript"
   },
-  "tool____get_set@Input()": {
-    "prefix": "tool____get_set@Input()",
+  "tool-ng-getset-input": {
+    "prefix": "tool-ng-getset-input",
     "body": [
       "private _$1: $2;",
       "",
@@ -263,8 +169,136 @@
     "description": "",
     "scope": "javascript,typescript"
   },
-  "tool---Proxy_Логирование": {
-    "prefix": "tool---Proxy_Логирование",
+  "tool-type-pickPartialOmit": {
+    "prefix": "tool-type-pickPartialOmit",
+    "body": [
+      "// type UserUpdate = Pick<User, 'id'> & Partial<Omit<User, 'id'>>;",
+      "type $1 = Pick<$2, '$3'> & Partial<Omit<$2, '$3'>>;",
+      "$0"
+    ],
+    "description": "обязательное поле, остальные — опциональные",
+    "scope": "javascript,typescript"
+  },
+  "tool-type-keyof": {
+    "prefix": "tool-type-keyof",
+    "body": [
+      "// interface Person { name: string; age: number }; type PersonKeys = keyof Person",
+      "type $1Keys = keyof $1;",
+      "$0"
+    ],
+    "description": "динамические ключи объектов",
+    "scope": "javascript,typescript"
+  },
+  "tool-type-nullable": {
+    "prefix": "tool-type-nullable",
+    "body": [
+      "// let currentUser: TNullable<User> = { id: 1, name: \"Иван\" };",
+      "type TNullable<T> = T | null;",
+      "$0"
+    ],
+    "description": "Дженерик-тип, который расширяет тип T, позволяя ему также принимать значение null.",
+    "scope": "javascript,typescript"
+  },
+  "tool-type-partial": {
+    "prefix": "tool-type-partial",
+    "body": [
+      "// const car: Partial<Car> = {};",
+      "const $1: Partial<$2> = {};",
+      "$0"
+    ],
+    "description": "объект временно пуст",
+    "scope": "javascript,typescript"
+  },
+  "tool-type-never": {
+    "prefix": "tool-type-never",
+    "body": [
+      "// Если union‑тип (Direction) изменится, TypeScript выдаст ошибку компиляции, если switch не обновлён.",
+      "type Direction = 'up' | 'down';",
+      "",
+      "public move(direction: Direction): number {",
+      "    switch (direction) {",
+      "        case 'up': return 1;",
+      "        case 'down': return -1;",
+      "        default:",
+      "          //!!! Если добавлен новый вариант в `Direction` и не обработан — ошибка компиляции",
+      "          const _: never = direction;",
+      "          throw new Error(`Неизвестный ключ: ${_}`);",
+      "    }",
+      "}",
+      "$0"
+    ],
+    "description": "пример обеспечения типовой безопасности при работе с union‑тип и switch",
+    "scope": "javascript,typescript"
+  },
+  "tool-type-readonly": {
+    "prefix": "tool-type-readonly",
+    "body": [
+      "// interface UserId { readonly id: number; }; const user: UserId = { id: 12345 };",
+      "// Ошибка компиляции - user.id = 67890; // Cannot assign to 'id' because it is a read-only property",
+      "interface I$1 {",
+      "  readonly $2: $3;",
+      "}",
+      "$0"
+    ],
+    "description": "Interface with readonly properties",
+    "scope": "javascript,typescript"
+  },
+  "tool-ts-asConst": {
+    "prefix": "tool-ts-asConst",
+    "body": ["const obj = { $1: $2 } as const; // readonly", "$0"],
+    "description": "объект константа",
+    "scope": "javascript,typescript"
+  },
+  "tool-ts-record": {
+    "prefix": "tool-ts-record",
+    "body": [
+      "// type UserId = 'id1' | 'id2' | 'id3';",
+      "// const users: Record<UserId, string> = { id1: 'Alice', id2: 'Bob', id3: 'Charlie' // id4: 'David' // ❌ ошибка: ключ не из UserId }  as const;;",
+      "",
+      "const obj: Record<$1, $2> = {$0} as const; // readonly"
+    ],
+    "description": "типизация объектов через Record",
+    "scope": "javascript,typescript"
+  },
+  "tool-ts-recordSatisfies": {
+    "prefix": "tool-ts-recordSatisfies",
+    "body": [
+      "// type UserId = 'id1' | 'id2' | 'id3';",
+      "// const users = { id1: 'Alice', id2: 'Bob', id3: 'Charlie' // id4: 'David' // ❌ ошибка: ключ не из UserId } as const satisfies Record<UserId, string>;",
+      "",
+      "const obj = {$0} as const satisfies Record<$1, $2>;"
+    ],
+    "description": "константный объект с as const и satisfies Record",
+    "scope": "javascript,typescript"
+  },
+  "tool-ts-try": {
+    "prefix": "tool-ts-try",
+    "body": [
+      "try {",
+      "    $0",
+      "} catch (error) {",
+      "    console.error(error);",
+      "} finally {",
+      "    // код, который выполнится всегда",
+      "}"
+    ],
+    "description": "обертка кода в блок try-catch-finally",
+    "scope": "javascript,typescript"
+  },
+  "tool-ts-try-await": {
+    "prefix": "tool-ts-try-await",
+    "body": ["await evo.awaitTryCatch.send($1, $2)", "$0"],
+    "description": "tryCatch для promise",
+    "scope": "javascript,typescript"
+  },
+  "tool-ts-debugger": {
+    "prefix": "tool-ts-debugger",
+    "body": ["debugger;"],
+    "description": "debugger",
+    "scope": "javascript,typescript"
+  },
+  "tool-ts-proxy-log": {
+    "prefix": "tool-ts-proxy-log",
     "body": [
       "public createProxyLog(target, onChange) {",
       "    // Обработка null и примитивов",
@@ -323,53 +357,19 @@
     "description": "Функция создания Proxy Логирование",
     "scope": "javascript,typescript"
   },
-  "tool-as_const_3_satisfies_Record": {
-    "prefix": "tool-as_const_3_satisfies_Record",
+  "tool-global-forEach": {
+    "prefix": "tool-global-forEach",
     "body": [
-      "// type UserId = 'id1' | 'id2' | 'id3';",
-      "// const users = { id1: 'Alice', id2: 'Bob', id3: 'Charlie' // id4: 'David' // ❌ ошибка: ключ не из UserId } as const satisfies Record<UserId, string>;",
-      "",
-      "const obj = {$0} as const satisfies Record<$1, $2>;"
-    ],
-    "description": "константный объект с as const и satisfies Record",
-    "scope": "javascript,typescript"
-  },
-  "tool#type_never": {
-    "prefix": "tool#type_never",
-    "body": [
-      "// Если union‑тип (Direction) изменится, TypeScript выдаст ошибку компиляции, если switch не обновлён.",
-      "type Direction = 'up' | 'down';",
-      "",
-      "public move(direction: Direction): number {",
-      "    switch (direction) {",
-      "        case 'up': return 1;",
-      "        case 'down': return -1;",
-      "        default:",
-      "          //!!! Если добавлен новый вариант в `Direction` и не обработан — ошибка компиляции",
-      "          const _: never = direction;",
-      "          throw new Error(`Неизвестный ключ: ${_}`);",
-      "    }",
-      "}",
+      "$1.forEach((item, i, arr) => {",
+      "  console.log( arr, i, item);",
+      "});",
       "$0"
     ],
-    "description": "пример обеспечения типовой безопасности при работе с union‑тип и switch",
+    "description": "forEach - метод массива",
     "scope": "javascript,typescript"
   },
-  "tool--Interface with readonly": {
-    "prefix": "tool--Interface with readonly",
-    "body": [
-      "// interface UserId { readonly id: number; }; const user: UserId = { id: 12345 };",
-      "// Ошибка компиляции - user.id = 67890; // Cannot assign to 'id' because it is a read-only property",
-      "interface I$1 {",
-      "  readonly $2: $3;",
-      "}",
-      "$0"
-    ],
-    "description": "Interface with readonly properties",
-    "scope": "javascript,typescript"
-  },
-  "tool#switch": {
-    "prefix": "tool#switch",
+  "tool-global-switch": {
+    "prefix": "tool-global-switch",
     "body": [
       "switch ($1) {",
       "  case $2: $3; break;",
@@ -382,8 +382,8 @@
     "description": "create SWITCH block",
     "scope": "javascript,typescript"
   },
-  "tool#switch_NEVER": {
-    "prefix": "tool#switch_NEVER",
+  "tool-global-switch-never": {
+    "prefix": "tool-global-switch-never",
     "body": [
       "// Если union‑тип (type Direction = 'up' | 'down';) изменится, TypeScript выдаст ошибку компиляции, если switch не обновлён.",
       "",
@@ -403,8 +403,8 @@
     "description": "create SWITCH block with NEVER",
     "scope": "javascript,typescript"
   },
-  "tool----windowГлобальный_объект": {
-    "prefix": "tool----windowГлобальный_объект",
+  "tool-global-window": {
+    "prefix": "tool-global-window",
     "body": [
       "declare global {",
       "    interface Window { $1: any; }",
@@ -419,8 +419,8 @@
     "description": "Declare global window object and assign value",
     "scope": "javascript,typescript"
   },
-  "tool---globalErrorListeners": {
-    "prefix": "tool---globalErrorListeners",
+  "tool-global-errors": {
+    "prefix": "tool-global-errors",
     "body": [
       "window.addEventListener('error', (event) => { console.warn('Global error:', event.error); }); // для обычных ошибок",
       "",

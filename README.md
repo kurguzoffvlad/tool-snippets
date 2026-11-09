@@ -1,5 +1,3 @@
-Для WebStorm и VS Code:
-
 ```markdown
 # ToolSnippets
 
@@ -38,7 +36,7 @@ npm run SNIPPETS:vscode
 
 ## Использование
 
-В редакторе начните вводить префикс сниппета (например `tool_deb`, `tool#forEach`, `tool___subscribe`) — IntelliSense предложит подстановку.
+В редакторе начните вводить префикс сниппета (например `tool-ts-debugger`, `tool-global-forEach`, `tool-ng-subscribe`) — IntelliSense предложит подстановку.
 
 ## Структура пакета
 
@@ -69,64 +67,63 @@ npm publish
 
 - Node.js (для скриптов установки)
 
-### Группы:
+## Схема префиксов
 
-**1. Массивы / циклы**
-- `tool#forEach`, `tool#switch`, `tool#switch_NEVER`
+Префикс = `tool-<группа>-<действие>`.
 
-**2. Angular хуки**
-- `tool_comp_1_ngOnChanges`, `tool_comp_2_ngOnInit`, `tool_comp_3_ngAfterViewInit`, `tool_comp_4_ngOnDestroy`
+### Группы
 
-**3. Angular подписки / DI / ViewChild**
-- `tool___subscribe`, `tool___Injector`, `tool____ViewChild_Child`, `tool____ViewChild_Element`
+**1. `tool-hook-*` — хуки жизненного цикла Angular**
+- `tool-hook-onChanges`, `tool-hook-onInit`, `tool-hook-afterViewInit`, `tool-hook-onDestroy`
 
-**4. Angular getter/setter**
-- `tool____get_set`, `tool____get_set@Input()`
+**2. `tool-ng-*` — Angular (DI, подписки, ViewChild, get/set)**
+- `tool-ng-subscribe`, `tool-ng-injector`, `tool-ng-viewChild`, `tool-ng-viewChildEl`, `tool-ng-getset`, `tool-ng-getset-input`
 
-**5. TypeScript типы**
-- `tool--typePickPartialOmit`, `tool--type_keyof`, `tool--typeTNullable`, `tool--typePartial`, `tool#type_never`, `tool--Interface with readonly`
+**3. `tool-type-*` — объявления типов (`type`, `interface`)**
+- `tool-type-pickPartialOmit`, `tool-type-keyof`, `tool-type-nullable`, `tool-type-partial`, `tool-type-never`, `tool-type-readonly`
 
-**6. TypeScript const / Record**
-- `tool-as_const_1`, `tool-as_const_2_Record`, `tool-as_const_3_satisfies_Record`
+**4. `tool-ts-*` — значения/выражения TS (`as const`, `Record`, `satisfies`, try, отладка)**
+- `tool-ts-asConst`, `tool-ts-record`, `tool-ts-recordSatisfies`, `tool-ts-try`, `tool-ts-try-await`, `tool-ts-debugger`, `tool-ts-proxy-log`
 
-**7. try/catch**
-- `tool__tryCatch`, `tool__tryCatch.await`
+**5. `tool-global-*` — общее (массивы, ветвления, глобальные объекты, глобальные ошибки)**
+- `tool-global-forEach`, `tool-global-switch`, `tool-global-switch-never`, `tool-global-window`, `tool-global-errors`
 
-**8. Отладка**
-- `tool_deb`, `tool---globalErrorListeners`, `tool---Proxy_Логирование`
-
-**9. Глобальные объекты**
-- `tool----windowГлобальный_объект`
-
-### Примеры сниппетов
+## Примеры сниппетов
 
 | Префикс | Описание |
 |---|---|
-| `tool#forEach` | forEach по массиву |
-| `tool_deb` | `debugger;` |
-| `tool_comp_1_ngOnChanges` | хук `ngOnChanges` |
-| `tool_comp_2_ngOnInit` | хук `ngOnInit` |
-| `tool_comp_3_ngAfterViewInit` | хук `ngAfterViewInit` |
-| `tool_comp_4_ngOnDestroy` | хук `ngOnDestroy` |
-| `tool___subscribe` | подписка на Observable с `takeUntil` |
-| `tool__tryCatch` | блок `try-catch-finally` |
-| `tool__tryCatch.await` | tryCatch для promise |
-| `tool-as_const_1` | объект `as const` |
-| `tool-as_const_2_Record` | `Record<K, V>` + `as const` |
-| `tool-as_const_3_satisfies_Record` | `as const satisfies Record` |
-| `tool--typePickPartialOmit` | `Pick & Partial<Omit>` |
-| `tool--type_keyof` | `keyof` |
-| `tool--typeTNullable` | `TNullable<T>` |
-| `tool--typePartial` | `Partial<T>` |
-| `tool--Interface with readonly` | interface с `readonly` |
-| `tool___Injector` | сервис через `Injector` |
-| `tool____ViewChild_Child` | `@ViewChild` (компонент) |
-| `tool____ViewChild_Element` | `@ViewChild` (ElementRef) |
-| `tool____get_set` | getter/setter |
-| `tool____get_set@Input()` | getter/setter с `@Input()` |
-| `tool---Proxy_Логирование` | Proxy-логирование изменений |
-| `tool#type_never` | `switch` + `never` (exhaustive check) |
-| `tool#switch` | `switch` блок |
-| `tool#switch_NEVER` | `switch` + `never` |
-| `tool----windowГлобальный_объект` | declare global window |
-| `tool---globalErrorListeners` | global error listeners |
+| `tool-hook-onChanges` | хук `ngOnChanges` |
+| `tool-hook-onInit` | хук `ngOnInit` |
+| `tool-hook-afterViewInit` | хук `ngAfterViewInit` |
+| `tool-hook-onDestroy` | хук `ngOnDestroy` |
+| `tool-ng-subscribe` | подписка на Observable с `takeUntil` |
+| `tool-ng-injector` | сервис через `Injector` |
+| `tool-ng-viewChild` | `@ViewChild` (компонент) |
+| `tool-ng-viewChildEl` | `@ViewChild` (ElementRef) |
+| `tool-ng-getset` | getter/setter |
+| `tool-ng-getset-input` | getter/setter с `@Input()` |
+| `tool-type-pickPartialOmit` | `Pick & Partial<Omit>` |
+| `tool-type-keyof` | `keyof` |
+| `tool-type-nullable` | `TNullable<T>` |
+| `tool-type-partial` | `Partial<T>` |
+| `tool-type-never` | `switch` + `never` (exhaustive check) |
+| `tool-type-readonly` | interface с `readonly` |
+| `tool-ts-asConst` | объект `as const` |
+| `tool-ts-record` | `Record<K, V>` + `as const` |
+| `tool-ts-recordSatisfies` | `as const satisfies Record` |
+| `tool-ts-try` | блок `try-catch-finally` |
+| `tool-ts-try-await` | tryCatch для promise |
+| `tool-ts-debugger` | `debugger;` |
+| `tool-ts-proxy-log` | Proxy-логирование изменений |
+| `tool-global-forEach` | forEach по массиву |
+| `tool-global-switch` | `switch` блок |
+| `tool-global-switch-never` | `switch` + `never` |
+| `tool-global-window` | declare global window |
+| `tool-global-errors` | global error listeners |
+```
+
+Изменения:
+- В «Использование» примеры префиксов заменены на новые.
+- Блок «Группы» переписан под `tool-hook-*`, `tool-ng-*`, `tool-type-*`, `tool-ts-*`, `tool-global-*` (5 групп вместо 9).
+- Таблица примеров пересобрана под новые префиксы, порядок совпадает с группами.
+- Добавлено короткое пояснение схемы `tool-<группа>-<действие>`.
