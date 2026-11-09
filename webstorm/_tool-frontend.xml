@@ -153,12 +153,6 @@
 			<option name="TypeScript" value="true" />
 		</context>
 	</template>
-	<template name="tool-ts-debugger" value="debugger;" description="debugger" toReformat="true" toShortenFQNames="true">
-		<context>
-			<option name="JAVA_SCRIPT" value="true" />
-			<option name="TypeScript" value="true" />
-		</context>
-	</template>
 	<template name="tool-ts-proxy-log" value="public createProxyLog(target, onChange) {&#10;    // Обработка null и примитивов&#10;    if (target === null || typeof target !== 'object') {&#10;        return target;&#10;    }&#10;  &#10;    return new Proxy(target, {&#10;        set(obj, prop, value) {&#10;            const oldValue = obj[prop];&#10;          &#10;            // Рекурсивно обрабатываем новые объекты&#10;            const newValue = this.createProxyLog(value, onChange);&#10;          &#10;            obj[prop] = newValue;&#10;          &#10;            // Проверяем реальное изменение (учитываем NaN)&#10;            if (oldValue !== value &amp;&amp; !(Number.isNaN(oldValue) &amp;&amp; Number.isNaN(value))) {&#10;                onChange(prop, newValue, oldValue);&#10;            }&#10;          &#10;            return true;&#10;        },&#10;    &#10;        get(obj, prop) {&#10;            const value = obj[prop];&#10;          &#10;            // Рекурсивно создаем прокси для вложенных объектов&#10;            if (value !== null &amp;&amp; typeof value === 'object') {&#10;                return this.createProxyLog(value, onChange);&#10;            }&#10;          &#10;            return value;&#10;        },&#10;    &#10;        deleteProperty(obj, prop) {&#10;            const oldValue = obj[prop];&#10;            const deleted = delete obj[prop];&#10;          &#10;            if (deleted) { onChange(prop, undefined, oldValue); }&#10;          &#10;            return deleted;&#10;        }&#10;    });&#10;}&#10;&#10;&#10;// Использование:&#10;//let state = this.createProxyLog(&#10;//{ user: { name: 'Alice', age: 30 } settings: { theme: 'dark', notifications: true } }, &#10;//(prop, value, oldValue) =&gt; { console.log(`Property &quot;${prop}&quot; changed: ${oldValue} → ${value}`); });&#10;//&#10;// delete state.user.email;        // Property &quot;email&quot; changed: alice@example.com → undefined" description="Функция создания Proxy Логирование" toReformat="false" toShortenFQNames="true">
 		<context>
 			<option name="JAVA_SCRIPT" value="true" />
@@ -203,6 +197,12 @@
 		</context>
 	</template>
 	<template name="tool-global-errors" value="window.addEventListener('error', (event) =&gt; { console.warn('Global error:', event.error); }); // для обычных ошибок&#10;&#10;window.addEventListener('unhandledrejection', (event) =&gt; {&#10;  console.warn('Unhandled promise rejection:', event.reason); // для ошибок (например, async / Promise)&#10;});" description="Debug: global error &amp; promise rejection listeners" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="JAVA_SCRIPT" value="true" />
+			<option name="TypeScript" value="true" />
+		</context>
+	</template>
+	<template name="tool-global-debugger" value="debugger;" description="debugger" toReformat="true" toShortenFQNames="true">
 		<context>
 			<option name="JAVA_SCRIPT" value="true" />
 			<option name="TypeScript" value="true" />

@@ -291,12 +291,6 @@
     "description": "tryCatch для promise",
     "scope": "javascript,typescript"
   },
-  "tool-ts-debugger": {
-    "prefix": "tool-ts-debugger",
-    "body": ["debugger;"],
-    "description": "debugger",
-    "scope": "javascript,typescript"
-  },
   "tool-ts-proxy-log": {
     "prefix": "tool-ts-proxy-log",
     "body": [
@@ -430,6 +424,12 @@
       "$0"
     ],
     "description": "Debug: global error & promise rejection listeners",
+    "scope": "javascript,typescript"
+  },
+  "tool-global-debugger": {
+    "prefix": "tool-global-debugger",
+    "body": ["debugger;"],
+    "description": "debugger",
     "scope": "javascript,typescript"
   }
 }

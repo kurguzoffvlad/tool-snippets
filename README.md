@@ -90,40 +90,34 @@ npm publish
 
 ## Примеры сниппетов
 
-| Префикс | Описание |
-|---|---|
-| `tool-hook-onChanges` | хук `ngOnChanges` |
-| `tool-hook-onInit` | хук `ngOnInit` |
-| `tool-hook-afterViewInit` | хук `ngAfterViewInit` |
-| `tool-hook-onDestroy` | хук `ngOnDestroy` |
-| `tool-ng-subscribe` | подписка на Observable с `takeUntil` |
-| `tool-ng-injector` | сервис через `Injector` |
-| `tool-ng-viewChild` | `@ViewChild` (компонент) |
-| `tool-ng-viewChildEl` | `@ViewChild` (ElementRef) |
-| `tool-ng-getset` | getter/setter |
-| `tool-ng-getset-input` | getter/setter с `@Input()` |
+| Префикс                     | Описание |
+|-----------------------------|---|
+| `tool-hook-onChanges`       | хук `ngOnChanges` |
+| `tool-hook-onInit`          | хук `ngOnInit` |
+| `tool-hook-afterViewInit`   | хук `ngAfterViewInit` |
+| `tool-hook-onDestroy`       | хук `ngOnDestroy` |
+| `tool-ng-subscribe`         | подписка на Observable с `takeUntil` |
+| `tool-ng-injector`          | сервис через `Injector` |
+| `tool-ng-viewChild`         | `@ViewChild` (компонент) |
+| `tool-ng-viewChildEl`       | `@ViewChild` (ElementRef) |
+| `tool-ng-getset`            | getter/setter |
+| `tool-ng-getset-input`      | getter/setter с `@Input()` |
 | `tool-type-pickPartialOmit` | `Pick & Partial<Omit>` |
-| `tool-type-keyof` | `keyof` |
-| `tool-type-nullable` | `TNullable<T>` |
-| `tool-type-partial` | `Partial<T>` |
-| `tool-type-never` | `switch` + `never` (exhaustive check) |
-| `tool-type-readonly` | interface с `readonly` |
-| `tool-ts-asConst` | объект `as const` |
-| `tool-ts-record` | `Record<K, V>` + `as const` |
-| `tool-ts-recordSatisfies` | `as const satisfies Record` |
-| `tool-ts-try` | блок `try-catch-finally` |
-| `tool-ts-try-await` | tryCatch для promise |
-| `tool-ts-debugger` | `debugger;` |
-| `tool-ts-proxy-log` | Proxy-логирование изменений |
-| `tool-global-forEach` | forEach по массиву |
-| `tool-global-switch` | `switch` блок |
-| `tool-global-switch-never` | `switch` + `never` |
-| `tool-global-window` | declare global window |
-| `tool-global-errors` | global error listeners |
+| `tool-type-keyof`           | `keyof` |
+| `tool-type-nullable`        | `TNullable<T>` |
+| `tool-type-partial`         | `Partial<T>` |
+| `tool-type-never`           | `switch` + `never` (exhaustive check) |
+| `tool-type-readonly`        | interface с `readonly` |
+| `tool-ts-asConst`           | объект `as const` |
+| `tool-ts-record`            | `Record<K, V>` + `as const` |
+| `tool-ts-recordSatisfies`   | `as const satisfies Record` |
+| `tool-ts-try`               | блок `try-catch-finally` |
+| `tool-ts-try-await`         | tryCatch для promise |
+| `tool-ts-proxy-log`         | Proxy-логирование изменений |
+| `tool-global-forEach`       | forEach по массиву |
+| `tool-global-switch`        | `switch` блок |
+| `tool-global-switch-never`  | `switch` + `never` |
+| `tool-global-window`        | declare global window |
+| `tool-global-errors`        | global error listeners |
+| `tool-global-debugger`      | `debugger;` |
 ```
-
-Изменения:
-- В «Использование» примеры префиксов заменены на новые.
-- Блок «Группы» переписан под `tool-hook-*`, `tool-ng-*`, `tool-type-*`, `tool-ts-*`, `tool-global-*` (5 групп вместо 9).
-- Таблица примеров пересобрана под новые префиксы, порядок совпадает с группами.
-- Добавлено короткое пояснение схемы `tool-<группа>-<действие>`.

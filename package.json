@@ -1,6 +1,6 @@
 {
   "name": "tool-snippets",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "peerDependencies": {},
   "dependencies": {
     "tslib": "^2.3.0"
