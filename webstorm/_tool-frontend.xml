@@ -208,7 +208,7 @@
 			<option name="TypeScript" value="true" />
 		</context>
 	</template>
-	<template name="tool-width-wrapper" value="// в компоненте инструмента: привязать корневой элемент&#10;private readonly screen = inject(ToolScreenService);&#10;private readonly host = inject(ElementRef&lt;HTMLElement&gt;);&#10;&#10;public ngAfterViewInit(): void {&#10;    this.screen.setWrapperRef(this.host);&#10;}$END$" description="ToolScreenService: привязать wrapperRef для --tool-page-width" toReformat="false" toShortenFQNames="true">
+	<template name="tool-width-set" value="// в компоненте инструмента: привязать корневой элемент к переменной&#10;private readonly screen = inject(ToolScreenService);&#10;private readonly host = inject(ElementRef&lt;HTMLElement&gt;);&#10;&#10;public ngAfterViewInit(): void {&#10;    this.screen.setWrapperRef(this.host);&#10;}$END$" description="ToolScreenService: привязать wrapperRef для --tool-page-width" toReformat="false" toShortenFQNames="true">
 		<context>
 			<option name="JAVA_SCRIPT" value="true" />
 			<option name="TypeScript" value="true" />

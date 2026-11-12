@@ -435,10 +435,10 @@
     "description": "debugger",
     "scope": "javascript,typescript"
   },
-  "tool-width-wrapper": {
+  "tool-width-set": {
     "prefix": "tool-width-wrapper",
     "body": [
-      "// в компоненте инструмента: привязать корневой элемент",
+      "// в компоненте инструмента: привязать корневой элемент к переменной",
       "private readonly screen = inject(ToolScreenService);",
       "private readonly host = inject(ElementRef<HTMLElement>);",
       "",
