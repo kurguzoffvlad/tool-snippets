@@ -26,13 +26,6 @@
 			<option name="TypeScript" value="true" />
 		</context>
 	</template>
-	<template name="tool-ng-subscribe" value="// --------------------------------------&#10;import { OnDestroy } from '@angular/core';&#10;import { Subject } from 'rxjs/Subject';&#10;import { takeUntil } from 'rxjs/operators';&#10;// --------------------------------------&#10;private _destroyedSubscribe$: Subject&lt;void&gt; = new Subject&lt;void&gt;();&#10;// --------------------------------------&#10;    $TEXT$&#10;    .pipe(takeUntil(this._destroyedSubscribe$))&#10;    .subscribe({&#10;        next: (result) =&gt; { console.log('result', result); },&#10;        error: (err) =&gt; { console.error('Ошибка:', err); // здесь можно показать уведомление или выполнить fallback-логику },&#10;        complete: () =&gt; { console.log('Поток завершён'); }&#10;    });&#10;// --------------------------------------&#10;public ngOnDestroy(): void {&#10;    this._destroyedSubscribe$.next();&#10;    this._destroyedSubscribe$.complete();&#10;}&#10;// --------------------------------------" description="подписка на Observable и автоматическая отписка при уничтожении компонента (ngOnDestroy)." toReformat="false" toShortenFQNames="true">
-		<variable name="TEXT" expression="" defaultValue="" alwaysStopAt="true" />
-		<context>
-			<option name="JAVA_SCRIPT" value="true" />
-			<option name="TypeScript" value="true" />
-		</context>
-	</template>
 	<template name="tool-ng-injector" value="// в &quot;рабочем компоненте&quot; - public constructor(protected injector: Injector) { super(injector); }&#10;&#10;import { Injector, Type } from '@angular/core';&#10;&#10;protected $INSTANS$: $SERVICE$;&#10;&#10;protected constructor(&#10;    protected injector: Injector,&#10;) {&#10;    this.$INSTANS$ = injector.get&lt;$SERVICE$&gt;($SERVICE$ as Type&lt;$SERVICE$&gt;);&#10;}" description="Подключение сервиса в базовом компоненте через injector" toReformat="false" toShortenFQNames="true">
 		<variable name="INSTANS" expression="" defaultValue="" alwaysStopAt="true" />
 		<variable name="SERVICE" expression="" defaultValue="" alwaysStopAt="true" />
@@ -115,7 +108,7 @@
 			<option name="TypeScript" value="true" />
 		</context>
 	</template>
-	<template name="tool-ts-asConst" value="const obj = { $PROP$: $VAL$} as const; // readonly" description="объект константа" toReformat="false" toShortenFQNames="true">
+	<template name="tool-const-asConst" value="const obj = { $PROP$: $VAL$} as const; // readonly" description="объект константа" toReformat="false" toShortenFQNames="true">
 		<variable name="PROP" expression="" defaultValue="" alwaysStopAt="true" />
 		<variable name="VAL" expression="" defaultValue="" alwaysStopAt="true" />
 		<context>
@@ -123,7 +116,7 @@
 			<option name="TypeScript" value="true" />
 		</context>
 	</template>
-	<template name="tool-ts-record" value="// type UserId = 'id1' | 'id2' | 'id3';&#10;// const users: Record&lt;UserId, string&gt; = { id1: 'Alice', id2: 'Bob', id3: 'Charlie' // id4: 'David' // ❌ ошибка: ключ не из UserId }  as const;;&#10;&#10;const obj: Record&lt;$PROP$, $VAL$&gt; = {$END$} as const; // readonly" description="типизация объектов через Record" toReformat="false" toShortenFQNames="true">
+	<template name="tool-const-record" value="// type UserId = 'id1' | 'id2' | 'id3';&#10;// const users: Record&lt;UserId, string&gt; = { id1: 'Alice', id2: 'Bob', id3: 'Charlie' // id4: 'David' // ❌ ошибка: ключ не из UserId }  as const;;&#10;&#10;const obj: Record&lt;$PROP$, $VAL$&gt; = {$END$} as const; // readonly" description="типизация объектов через Record" toReformat="false" toShortenFQNames="true">
 		<variable name="PROP" expression="" defaultValue="" alwaysStopAt="true" />
 		<variable name="VAL" expression="" defaultValue="" alwaysStopAt="true" />
 		<context>
@@ -131,7 +124,7 @@
 			<option name="TypeScript" value="true" />
 		</context>
 	</template>
-	<template name="tool-ts-recordSatisfies" value="// type UserId = 'id1' | 'id2' | 'id3';&#10;// const users = { id1: 'Alice', id2: 'Bob', id3: 'Charlie' // id4: 'David' // ❌ ошибка: ключ не из UserId } as const satisfies Record&lt;UserId, string&gt;;&#10;&#10;const obj = {$END$} as const satisfies Record&lt;$KEY_TYPE$, $VALUE_TYPE$&gt;;" description="константный объект с as const и satisfies Record" toReformat="false" toShortenFQNames="true">
+	<template name="tool-const-recordSatisfies" value="// type UserId = 'id1' | 'id2' | 'id3';&#10;// const users = { id1: 'Alice', id2: 'Bob', id3: 'Charlie' // id4: 'David' // ❌ ошибка: ключ не из UserId } as const satisfies Record&lt;UserId, string&gt;;&#10;&#10;const obj = {$END$} as const satisfies Record&lt;$KEY_TYPE$, $VALUE_TYPE$&gt;;" description="константный объект с as const и satisfies Record" toReformat="false" toShortenFQNames="true">
 		<variable name="KEY_TYPE" expression="" defaultValue="" alwaysStopAt="true" />
 		<variable name="VALUE_TYPE" expression="" defaultValue="" alwaysStopAt="true" />
 		<context>
@@ -139,13 +132,13 @@
 			<option name="TypeScript" value="true" />
 		</context>
 	</template>
-	<template name="tool-ts-try" value="try {&#10;    $END$&#10;} catch (error) {&#10;    console.error(error);&#10;} finally {&#10;    // код, который выполнится всегда&#10;}" description="обертка кода в блок try-catch-finally" toReformat="false" toShortenFQNames="true">
+	<template name="tool-comm-try" value="try {&#10;    $END$&#10;} catch (error) {&#10;    console.error(error);&#10;} finally {&#10;    // код, который выполнится всегда&#10;}" description="обертка кода в блок try-catch-finally" toReformat="false" toShortenFQNames="true">
 		<context>
 			<option name="JAVA_SCRIPT" value="true" />
 			<option name="TypeScript" value="true" />
 		</context>
 	</template>
-	<template name="tool-ts-try-await" value="private readonly awaitTryCatch = inject(AwaitTryCatchService);&#10;  await this.awaitTryCatch.send($PROMISE$, $FROM$)" description="tryCatch для promise" toReformat="false" toShortenFQNames="true">
+	<template name="tool-comm-try-await" value="private readonly awaitTryCatch = inject(AwaitTryCatchService);&#10;  await this.awaitTryCatch.send($PROMISE$, $FROM$)" description="tryCatch для promise" toReformat="false" toShortenFQNames="true">
 		<variable name="PROMISE" expression="" defaultValue="" alwaysStopAt="true" />
 		<variable name="FROM" expression="" defaultValue="" alwaysStopAt="true" />
 		<context>
@@ -153,7 +146,14 @@
 			<option name="TypeScript" value="true" />
 		</context>
 	</template>
-	<template name="tool-ts-proxy-log" value="public createProxyLog(target, onChange) {&#10;    // Обработка null и примитивов&#10;    if (target === null || typeof target !== 'object') {&#10;        return target;&#10;    }&#10;  &#10;    return new Proxy(target, {&#10;        set(obj, prop, value) {&#10;            const oldValue = obj[prop];&#10;          &#10;            // Рекурсивно обрабатываем новые объекты&#10;            const newValue = this.createProxyLog(value, onChange);&#10;          &#10;            obj[prop] = newValue;&#10;          &#10;            // Проверяем реальное изменение (учитываем NaN)&#10;            if (oldValue !== value &amp;&amp; !(Number.isNaN(oldValue) &amp;&amp; Number.isNaN(value))) {&#10;                onChange(prop, newValue, oldValue);&#10;            }&#10;          &#10;            return true;&#10;        },&#10;    &#10;        get(obj, prop) {&#10;            const value = obj[prop];&#10;          &#10;            // Рекурсивно создаем прокси для вложенных объектов&#10;            if (value !== null &amp;&amp; typeof value === 'object') {&#10;                return this.createProxyLog(value, onChange);&#10;            }&#10;          &#10;            return value;&#10;        },&#10;    &#10;        deleteProperty(obj, prop) {&#10;            const oldValue = obj[prop];&#10;            const deleted = delete obj[prop];&#10;          &#10;            if (deleted) { onChange(prop, undefined, oldValue); }&#10;          &#10;            return deleted;&#10;        }&#10;    });&#10;}&#10;&#10;&#10;// Использование:&#10;//let state = this.createProxyLog(&#10;//{ user: { name: 'Alice', age: 30 } settings: { theme: 'dark', notifications: true } }, &#10;//(prop, value, oldValue) =&gt; { console.log(`Property &quot;${prop}&quot; changed: ${oldValue} → ${value}`); });&#10;//&#10;// delete state.user.email;        // Property &quot;email&quot; changed: alice@example.com → undefined" description="Функция создания Proxy Логирование" toReformat="false" toShortenFQNames="true">
+	<template name="tool-watch-proxy" value="public createProxyLog(target, onChange) {&#10;    // Обработка null и примитивов&#10;    if (target === null || typeof target !== 'object') {&#10;        return target;&#10;    }&#10;  &#10;    return new Proxy(target, {&#10;        set(obj, prop, value) {&#10;            const oldValue = obj[prop];&#10;          &#10;            // Рекурсивно обрабатываем новые объекты&#10;            const newValue = this.createProxyLog(value, onChange);&#10;          &#10;            obj[prop] = newValue;&#10;          &#10;            // Проверяем реальное изменение (учитываем NaN)&#10;            if (oldValue !== value &amp;&amp; !(Number.isNaN(oldValue) &amp;&amp; Number.isNaN(value))) {&#10;                onChange(prop, newValue, oldValue);&#10;            }&#10;          &#10;            return true;&#10;        },&#10;    &#10;        get(obj, prop) {&#10;            const value = obj[prop];&#10;          &#10;            // Рекурсивно создаем прокси для вложенных объектов&#10;            if (value !== null &amp;&amp; typeof value === 'object') {&#10;                return this.createProxyLog(value, onChange);&#10;            }&#10;          &#10;            return value;&#10;        },&#10;    &#10;        deleteProperty(obj, prop) {&#10;            const oldValue = obj[prop];&#10;            const deleted = delete obj[prop];&#10;          &#10;            if (deleted) { onChange(prop, undefined, oldValue); }&#10;          &#10;            return deleted;&#10;        }&#10;    });&#10;}&#10;&#10;&#10;// Использование:&#10;//let state = this.createProxyLog(&#10;//{ user: { name: 'Alice', age: 30 } settings: { theme: 'dark', notifications: true } }, &#10;//(prop, value, oldValue) =&gt; { console.log(`Property &quot;${prop}&quot; changed: ${oldValue} → ${value}`); });&#10;//&#10;// delete state.user.email;        // Property &quot;email&quot; changed: alice@example.com → undefined" description="Функция создания Proxy Логирование" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="JAVA_SCRIPT" value="true" />
+			<option name="TypeScript" value="true" />
+		</context>
+	</template>
+	<template name="tool-watch-subscribe" value="// --------------------------------------&#10;import { OnDestroy } from '@angular/core';&#10;import { Subject } from 'rxjs/Subject';&#10;import { takeUntil } from 'rxjs/operators';&#10;// --------------------------------------&#10;private _destroyedSubscribe$: Subject&lt;void&gt; = new Subject&lt;void&gt;();&#10;// --------------------------------------&#10;    $TEXT$&#10;    .pipe(takeUntil(this._destroyedSubscribe$))&#10;    .subscribe({&#10;        next: (result) =&gt; { console.log('result', result); },&#10;        error: (err) =&gt; { console.error('Ошибка:', err); // здесь можно показать уведомление или выполнить fallback-логику },&#10;        complete: () =&gt; { console.log('Поток завершён'); }&#10;    });&#10;// --------------------------------------&#10;public ngOnDestroy(): void {&#10;    this._destroyedSubscribe$.next();&#10;    this._destroyedSubscribe$.complete();&#10;}&#10;// --------------------------------------" description="подписка на Observable и автоматическая отписка при уничтожении компонента (ngOnDestroy)." toReformat="false" toShortenFQNames="true">
+		<variable name="TEXT" expression="" defaultValue="" alwaysStopAt="true" />
 		<context>
 			<option name="JAVA_SCRIPT" value="true" />
 			<option name="TypeScript" value="true" />
