@@ -287,7 +287,10 @@
   },
   "tool-ts-try-await": {
     "prefix": "tool-ts-try-await",
-    "body": ["await evo.awaitTryCatch.send($1, $2)", "$0"],
+    "body": [
+      "private readonly awaitTryCatch = inject(AwaitTryCatchService);",
+      "await this.awaitTryCatch.send($1, $2)", "$0"
+    ],
     "description": "tryCatch для promise",
     "scope": "javascript,typescript"
   },
