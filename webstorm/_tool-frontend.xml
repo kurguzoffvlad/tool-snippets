@@ -208,4 +208,44 @@
 			<option name="TypeScript" value="true" />
 		</context>
 	</template>
+	<template name="tool-width-wrapper" value="// в компоненте инструмента: привязать корневой элемент&#10;private readonly screen = inject(ToolScreenService);&#10;private readonly host = inject(ElementRef&lt;HTMLElement&gt;);&#10;&#10;public ngAfterViewInit(): void {&#10;    this.screen.setWrapperRef(this.host);&#10;}$END$" description="ToolScreenService: привязать wrapperRef для --tool-page-width" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="JAVA_SCRIPT" value="true" />
+			<option name="TypeScript" value="true" />
+		</context>
+	</template>
+	<template name="tool-width-css" value=".$WRAPPER$ {&#10;    width: var(--tool-page-width, 100%);&#10;}$END$" description="CSS: использовать --tool-page-width" toReformat="false" toShortenFQNames="true">
+		<variable name="WRAPPER" expression="" defaultValue="&quot;tool-wrapper&quot;" alwaysStopAt="true" />
+		<context>
+			<option name="CSS" value="true" />
+			<option name="SCSS" value="true" />
+		</context>
+	</template>
+	<template name="tool-width-state" value="public readonly screen = inject(ToolScreenService);&#10;&#10;public ngOnInit(): void {&#10;    this.screen.state$&#10;        .pipe(takeUntil(this._destroyed$))&#10;        .subscribe((info) =&gt; {&#10;            // info.screen.type / orientation / options&#10;            console.log(info.screen.type, info.screen.orientation);&#10;        });&#10;}$END$" description="ToolScreenService: подписка на state$ (для --tool-page-width)" toReformat="false" toShortenFQNames="true">
+		<context>
+			<option name="JAVA_SCRIPT" value="true" />
+			<option name="TypeScript" value="true" />
+		</context>
+	</template>
+	<template name="tool-theme-send" value="// отправка текущей темы&#10;this.themeLighthouse.send$({ name: '$THEME$' }, '$FROM$');&#10;// подписка на смену темы&#10;this.themeLighthouse.lighthouse$&#10;    .pipe(takeUntil(this._destroyed$))&#10;    .subscribe((theme) =&gt; { console.log('theme', theme); });$END$" description="ThemeLighthouse: отправить тему и подписаться на изменения" toReformat="false" toShortenFQNames="true">
+		<variable name="THEME" expression="" defaultValue="&quot;dark&quot;" alwaysStopAt="true" />
+		<variable name="FROM" expression="" defaultValue="&quot;AppComponent&quot;" alwaysStopAt="true" />
+		<context>
+			<option name="JAVA_SCRIPT" value="true" />
+			<option name="TypeScript" value="true" />
+		</context>
+	</template>
+	<template name="tool-theme-directive" value="&lt;!-- в шаблоне: суффикс _theme к каждому базовому классу --&gt;&#10;&lt;div [themeClass]=&quot;['$BASE$']&quot;&gt;&lt;/div&gt;&#10;&lt;!-- при теме dark → $BASE$_dark --&gt;$END$" description="ThemeClassDirective: темизированные классы" toReformat="false" toShortenFQNames="true">
+		<variable name="BASE" expression="" defaultValue="&quot;license-widget&quot;" alwaysStopAt="true" />
+		<context>
+			<option name="HTML" value="true" />
+		</context>
+	</template>
+	<template name="tool-theme-module" value="import { ThemeModule } from 'tool-screen-ang15';&#10;&#10;@NgModule({&#10;    imports: [ThemeModule],&#10;})&#10;export class $MODULE$ {}&#10;$END$" description="Подключение ThemeModule" toReformat="false" toShortenFQNames="true">
+		<variable name="MODULE" expression="" defaultValue="AppModule" alwaysStopAt="true" />
+		<context>
+			<option name="JAVA_SCRIPT" value="true" />
+			<option name="TypeScript" value="true" />
+		</context>
+	</template>
 </templateSet>

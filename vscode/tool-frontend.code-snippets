@@ -236,4 +236,286 @@
     "prefix": "tool-const-recordSatisfies",
     "body": [
       "// type UserId = 'id1' | 'id2' | 'id3';",
-      "// const users = { id1: 'Alice', id2: 'Bob', id3: 'Charlie' // id4: 'David' // ❌ ошибка: ключ не из UserId } as const satisfies Record<User
+      "// const users = { id1: 'Alice', id2: 'Bob', id3: 'Charlie' // id4: 'David' // ❌ ошибка: ключ не из UserId } as const satisfies Record<UserId, string>;",
+      "",
+      "const obj = {$0} as const satisfies Record<$1, $2>;"
+    ],
+    "description": "константный объект с as const и satisfies Record",
+    "scope": "javascript,typescript"
+  },
+  "tool-comm-try": {
+    "prefix": "tool-comm-try",
+    "body": [
+      "try {",
+      "    $0",
+      "} catch (error) {",
+      "    console.error(error);",
+      "} finally {",
+      "    // код, который выполнится всегда",
+      "}"
+    ],
+    "description": "обертка кода в блок try-catch-finally",
+    "scope": "javascript,typescript"
+  },
+  "tool-comm-try-await": {
+    "prefix": "tool-comm-try-await",
+    "body": [
+      "private readonly awaitTryCatch = inject(AwaitTryCatchService);",
+      "await this.awaitTryCatch.send($1, $2)", "$0"
+    ],
+    "description": "tryCatch для promise",
+    "scope": "javascript,typescript"
+  },
+  "tool-watch-proxy": {
+    "prefix": "tool-watch-proxy",
+    "body": [
+      "public createProxyLog(target, onChange) {",
+      "    // Обработка null и примитивов",
+      "    if (target === null || typeof target !== 'object') {",
+      "        return target;",
+      "    }",
+      "  ",
+      "    return new Proxy(target, {",
+      "        set(obj, prop, value) {",
+      "            const oldValue = obj[prop];",
+      "          ",
+      "            // Рекурсивно обрабатываем новые объекты",
+      "            const newValue = this.createProxyLog(value, onChange);",
+      "          ",
+      "            obj[prop] = newValue;",
+      "          ",
+      "            // Проверяем реальное изменение (учитываем NaN)",
+      "            if (oldValue !== value && !(Number.isNaN(oldValue) && Number.isNaN(value))) {",
+      "                onChange(prop, newValue, oldValue);",
+      "            }",
+      "          ",
+      "            return true;",
+      "        },",
+      "    ",
+      "        get(obj, prop) {",
+      "            const value = obj[prop];",
+      "          ",
+      "            // Рекурсивно создаем прокси для вложенных объектов",
+      "            if (value !== null && typeof value === 'object') {",
+      "                return this.createProxyLog(value, onChange);",
+      "            }",
+      "          ",
+      "            return value;",
+      "        },",
+      "    ",
+      "        deleteProperty(obj, prop) {",
+      "            const oldValue = obj[prop];",
+      "            const deleted = delete obj[prop];",
+      "          ",
+      "            if (deleted) { onChange(prop, undefined, oldValue); }",
+      "          ",
+      "            return deleted;",
+      "        }",
+      "    });",
+      "}",
+      "",
+      "",
+      "// Использование:",
+      "//let state = this.createProxyLog(",
+      "//{ user: { name: 'Alice', age: 30 } settings: { theme: 'dark', notifications: true } }, ",
+      "//(prop, value, oldValue) => { console.log(`Property \"${prop}\" changed: ${oldValue} → ${value}`); });",
+      "//",
+      "// delete state.user.email;        // Property \"email\" changed: alice@example.com → undefined",
+      "$0"
+    ],
+    "description": "Функция создания Proxy Логирование",
+    "scope": "javascript,typescript"
+  },
+  "tool-watch-subscribe": {
+    "prefix": "tool-watch-subscribe",
+    "body": [
+      "// --------------------------------------",
+      "import { OnDestroy } from '@angular/core';",
+      "import { Subject } from 'rxjs/Subject';",
+      "import { takeUntil } from 'rxjs/operators';",
+      "// --------------------------------------",
+      "private _destroyedSubscribe$: Subject<void> = new Subject<void>();",
+      "// --------------------------------------",
+      "    $1",
+      "    .pipe(takeUntil(this._destroyedSubscribe$))",
+      "    .subscribe({",
+      "        next: (result) => { console.log('result', result); },",
+      "        error: (err) => { console.error('Ошибка:', err); // здесь можно показать уведомление или выполнить fallback-логику },",
+      "        complete: () => { console.log('Поток завершён'); }",
+      "    });",
+      "// --------------------------------------",
+      "public ngOnDestroy(): void {",
+      "    this._destroyedSubscribe$.next();",
+      "    this._destroyedSubscribe$.complete();",
+      "}",
+      "// --------------------------------------",
+      "$0"
+    ],
+    "description": "подписка на Observable и автоматическая отписка при уничтожении компонента (ngOnDestroy).",
+    "scope": "javascript,typescript"
+  },
+  "tool-global-forEach": {
+    "prefix": "tool-global-forEach",
+    "body": [
+      "$1.forEach((item, i, arr) => {",
+      "  console.log( arr, i, item);",
+      "});",
+      "$0"
+    ],
+    "description": "forEach - метод массива",
+    "scope": "javascript,typescript"
+  },
+  "tool-global-switch": {
+    "prefix": "tool-global-switch",
+    "body": [
+      "switch ($1) {",
+      "  case $2: $3; break;",
+      "  case $4: $5; break;",
+      "  default:",
+      "    $6;",
+      "}",
+      "$0"
+    ],
+    "description": "create SWITCH block",
+    "scope": "javascript,typescript"
+  },
+  "tool-global-switch-never": {
+    "prefix": "tool-global-switch-never",
+    "body": [
+      "// Если union‑тип (type Direction = 'up' | 'down';) изменится, TypeScript выдаст ошибку компиляции, если switch не обновлён.",
+      "",
+      "switch ($1) {",
+      "  case $2:",
+      "    $3;",
+      "    break;",
+      "  case $4:",
+      "    $5;",
+      "    break;",
+      "  default:",
+      "    const _exhaustiveCheck: never = $1;",
+      "    throw new Error(`Необработанное значение: ${$1}`);",
+      "}",
+      "$0"
+    ],
+    "description": "create SWITCH block with NEVER",
+    "scope": "javascript,typescript"
+  },
+  "tool-global-window": {
+    "prefix": "tool-global-window",
+    "body": [
+      "declare global {",
+      "    interface Window { $1: any; }",
+      "    ",
+      "    const $1: any; // Добавляем глобальную переменную",
+      "}",
+      "",
+      "(window as any).$1 = $0;",
+      "",
+      "export {};"
+    ],
+    "description": "Declare global window object and assign value",
+    "scope": "javascript,typescript"
+  },
+  "tool-global-errors": {
+    "prefix": "tool-global-errors",
+    "body": [
+      "window.addEventListener('error', (event) => { console.warn('Global error:', event.error); }); // для обычных ошибок",
+      "",
+      "window.addEventListener('unhandledrejection', (event) => {",
+      "  console.warn('Unhandled promise rejection:', event.reason); // для ошибок (например, async / Promise)",
+      "});",
+      "$0"
+    ],
+    "description": "Debug: global error & promise rejection listeners",
+    "scope": "javascript,typescript"
+  },
+  "tool-global-debugger": {
+    "prefix": "tool-global-debugger",
+    "body": ["debugger;"],
+    "description": "debugger",
+    "scope": "javascript,typescript"
+  },
+  "tool-width-wrapper": {
+    "prefix": "tool-width-wrapper",
+    "body": [
+      "// в компоненте инструмента: привязать корневой элемент",
+      "private readonly screen = inject(ToolScreenService);",
+      "private readonly host = inject(ElementRef<HTMLElement>);",
+      "",
+      "public ngAfterViewInit(): void {",
+      "    this.screen.setWrapperRef(this.host);",
+      "}",
+      "$0"
+    ],
+    "description": "ToolScreenService: привязать wrapperRef для --tool-page-width",
+    "scope": "javascript,typescript"
+  },
+  "tool-width-css": {
+    "prefix": "tool-width-css",
+    "body": [
+      ".$1 {",
+      "    width: var(--tool-page-width, 100%);",
+      "}",
+      "$0"
+    ],
+    "description": "CSS: использовать --tool-page-width",
+    "scope": "css,scss"
+  },
+  "tool-width-state": {
+    "prefix": "tool-width-state",
+    "body": [
+      "public readonly screen = inject(ToolScreenService);",
+      "",
+      "public ngOnInit(): void {",
+      "    this.screen.state$",
+      "        .pipe(takeUntil(this._destroyed$))",
+      "        .subscribe((info) => {",
+      "            // info.screen.type / orientation / options",
+      "            console.log(info.screen.type, info.screen.orientation);",
+      "        });",
+      "}",
+      "$0"
+    ],
+    "description": "ToolScreenService: подписка на state$ (для --tool-page-width)",
+    "scope": "javascript,typescript"
+  },
+  "tool-theme-send": {
+    "prefix": "tool-theme-send",
+    "body": [
+      "// отправка текущей темы",
+      "this.themeLighthouse.send$({ name: '$1' }, '$2');",
+      "// подписка на смену темы",
+      "this.themeLighthouse.lighthouse$",
+      "    .pipe(takeUntil(this._destroyed$))",
+      "    .subscribe((theme) => { console.log('theme', theme); });",
+      "$0"
+    ],
+    "description": "ThemeLighthouse: отправить тему и подписаться на изменения",
+    "scope": "javascript,typescript"
+  },
+  "tool-theme-directive": {
+    "prefix": "tool-theme-directive",
+    "body": [
+      "<!-- в шаблоне: суффикс _theme к каждому базовому классу -->",
+      "<div [themeClass]=\"['$1']\"></div>",
+      "<!-- при теме dark → $1_dark -->",
+      "$0"
+    ],
+    "description": "ThemeClassDirective: темизированные классы",
+    "scope": "html"
+  },
+  "tool-theme-module": {
+    "prefix": "tool-theme-module",
+    "body": [
+      "import { ThemeModule } from 'tool-screen-ang15';",
+      "",
+      "@NgModule({",
+      "    imports: [ThemeModule],",
+      "})",
+      "export class $1 {}",
+      "$0"
+    ],
+    "description": "Подключение ThemeModule",
+    "scope": "javascript,typescript"
+  }
+}

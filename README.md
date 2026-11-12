@@ -73,26 +73,33 @@ npm publish
 
 ### Группы
 
-**1. `tool-hook-*` — хуки жизненного цикла Angular**
-- `tool-hook-onChanges`, `tool-hook-onInit`, `tool-hook-afterViewInit`, `tool-hook-onDestroy`
+**1. `tool-type-*` — объявления типов (`type`, `interface`)**
+- `tool-type-pickPartialOmit`, `tool-type-keyof`, `tool-type-nullable`, `tool-type-partial`, `tool-type-never`, `tool-type-readonly`
 
 **2. `tool-ng-*` — Angular (DI, ViewChild, get/set)**
 - `tool-ng-injector`, `tool-ng-viewChild`, `tool-ng-viewChildEl`, `tool-ng-getset`, `tool-ng-getset-input`
 
-**3. `tool-type-*` — объявления типов (`type`, `interface`)**
-- `tool-type-pickPartialOmit`, `tool-type-keyof`, `tool-type-nullable`, `tool-type-partial`, `tool-type-never`, `tool-type-readonly`
+**3. `tool-hook-*` — хуки жизненного цикла Angular**
+- `tool-hook-onChanges`, `tool-hook-onInit`, `tool-hook-afterViewInit`, `tool-hook-onDestroy`
 
-**4. `tool-const-*` — константы и типизированные объекты (`as const`, `Record`, `satisfies`)**
-- `tool-const-asConst`, `tool-const-record`, `tool-const-recordSatisfies`
-
-**5. `tool-comm-*` — общие конструкции (try/catch, await-try)**
-- `tool-comm-try`, `tool-comm-try-await`
-
-**6. `tool-watch-*` — подписки и наблюдение (Observable, Proxy)**
+**4. `tool-watch-*` — подписки и наблюдение (Observable, Proxy)**
 - `tool-watch-subscribe`, `tool-watch-proxy`
 
-**7. `tool-global-*` — общее (массивы, ветвления, глобальные объекты, глобальные ошибки)**
+**5. `tool-const-*` — константы и типизированные объекты (`as const`, `Record`, `satisfies`)**
+- `tool-const-asConst`, `tool-const-record`, `tool-const-recordSatisfies`
+
+**6. `tool-comm-*` — общие конструкции (try/catch, await-try)**
+- `tool-comm-try`, `tool-comm-try-await`
+
+**7. `tool-width-*` — ширина страницы (`--tool-page-width`)**
+- `tool-width-wrapper`, `tool-width-css`, `tool-width-state`
+
+**8. `tool-theme-*` — темизация (`ThemeModule`)**
+- `tool-theme-send`, `tool-theme-directive`, `tool-theme-module`
+
+**9. `tool-global-*` — общее (массивы, ветвления, глобальные объекты, глобальные ошибки)**
 - `tool-global-forEach`, `tool-global-switch`, `tool-global-switch-never`, `tool-global-window`, `tool-global-errors`, `tool-global-debugger`
+
 
 ## Примеры сниппетов
 
@@ -126,4 +133,10 @@ npm publish
 | `tool-global-window`         | declare global window |
 | `tool-global-errors`         | global error listeners |
 | `tool-global-debugger`       | `debugger;` |
+| `tool-width-wrapper`         | привязка `wrapperRef` для `--tool-page-width` |
+| `tool-width-css`             | CSS-правило с `var(--tool-page-width)` |
+| `tool-width-state`           | подписка на `ToolScreenService.state$` |
+| `tool-theme-send`            | `ThemeLighthouse.send$()` + подписка |
+| `tool-theme-directive`       | HTML с `[themeClass]` |
+| `tool-theme-module`          | импорт `ThemeModule` |
 ```
