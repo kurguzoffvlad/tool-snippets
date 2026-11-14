@@ -1,4 +1,3 @@
-```markdown
 # ToolSnippets
 
 Библиотека сниппетов для **WebStorm** и **Visual Studio Code** (Angular/TypeScript).
@@ -139,4 +138,4 @@ npm publish
 | `tool-theme-send`            | `ThemeLighthouse.send$()` + подписка |
 | `tool-theme-directive`       | HTML с `[themeClass]` |
 | `tool-theme-module`          | импорт `ThemeModule` |
-```
+
