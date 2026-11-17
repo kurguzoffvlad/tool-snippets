@@ -1,5 +1,7 @@
 # ToolSnippets
 
+## Использование в https://github.com/kurguzoffvlad/tool-libs-ang15
+
 Библиотека сниппетов для **WebStorm** и **Visual Studio Code** (Angular/TypeScript).
 
 ## Установка
